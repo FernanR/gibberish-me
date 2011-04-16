@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <title>gibberish.me -- generate gibberish from any text</title>
+    <link rel="stylesheet" type="text/css" href="styles/styles.css" />
+    <script type="text/javascript" src="gibberish.js"></script>
+</head>    
+<body>
+    <div class="container">
+        <div class="nav">
+            <ul>
+                <li>
+                    <a href="http://github.com/benbscholz/gibberish-me">source code</a>
+                </li>
+                <li>
+                    <a href="http://gibberish.me/how">how does it work?</a>
+                </li>
+                <li>
+                    <a href="mailto:bbscholz@gmail.com">contact</a>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="intro">
+            <div class="logo">
+                <p>
+                    <a id="spritego" href="#" onClick="go(); return false;">gibberish me!</a>
+                </p>
+            </div>
+            <div class="about">
+                <h1>Generate gibberish in the voice of any text.</h1>
+                <h2>gibberish.me scans the input text and generates gibberish based upon its vocabulary and word order. It may just make more sense than the original...</h2>
+                <p>
+                    <a class="try" href="#" onClick="tryObama(); return false;">try Obama's inaugural address</a>
+                </p>
+            </div>
+        </div>
+        
+        <div class="main">
+        <form name="gibberform" action="#">
+            <div class="inbox" name="divcont">
+                <textarea type="text" name="input" rows="20" cols="50">text to gibberish.</textarea>
+            </div>
+            
+            <div class="outbox">
+                <textarea type="text" name="output" rows="20" cols="50">your gibberish.</textarea>
+            </div>
+        </form>
+        </div>
+        
+    </div>
+    <div class="bottom">
+    
+        <div class="footer">
+            <p>
+                &copy; 2011 ben brooks scholz - this site is <a href="http://github.com/benbscholz/gibberish-me">open source<a>
+            </p>
+        </div>
+        
+    </div>
+</body>
+</html>
+
