@@ -29,7 +29,7 @@ var GibberishMe = function (inputText) {
 GibberishMe.prototype = {
 
     generateGibberish: function (numWords) {
-        var i, prefix, suffix, output;
+        var i, prefix, suffix, output, lastPeriod;
         
         prefix = this.getPrefix();
         suffix = this.getSuffix(prefix);
@@ -48,6 +48,8 @@ GibberishMe.prototype = {
                 output = output + ". " + prefix;
             }
         }
+        lastPeriod = output.lastIndexOf(".");
+        output = output.substring(0, lastPeriod + 1);
         return output;
     },
 
