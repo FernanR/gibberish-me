@@ -6,6 +6,9 @@
 
 #### Very rough, early release. 
 
+gibberish.js is the commented source code.
+gibberishcomp.js was compiled using closure and is typically what's powering the site.
+
     To do:
         - clean input
         - add a page allowing users to experiment with different settings
