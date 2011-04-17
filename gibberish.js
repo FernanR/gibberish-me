@@ -24,7 +24,6 @@
 var GibberishMe = function (inputText) {
     this.inText = inputText;
     this.gibberTable = [];
-    this.gibberish = [];
 };
 
 GibberishMe.prototype = {
@@ -140,6 +139,7 @@ function go() {
     gm.inText = window.document.gibberform.input.value;
     gm.makeGibberTable();
     var out = gm.generateGibberish(200);
+    document.getElementById("squig").style.visibility = "visible";
     window.document.gibberform.output.value = out;
 }
 
