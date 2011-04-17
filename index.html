@@ -4,7 +4,7 @@
 <html>
 <head>
     <title>gibberish.me -- generate gibberish from any text</title>
-    <link rel="stylesheet" type="text/css" href="styles/styles.css" />
+    <link rel="stylesheet" type="text/css" href="styles/styles.css">
     <script type="text/javascript" src="gibberish.js"></script>
 </head>    
 <body>
@@ -40,12 +40,14 @@
         
         <div class="main">
         <form name="gibberform" action="#">
-            <div class="inbox" name="divcont">
-                <textarea type="text" onfocus="this.value=''; return false" name="input" rows="20" cols="50">text to gibberish.</textarea>
+            <div class="inbox">
+                <textarea onfocus="this.value=''; return false" name="input" rows="20" cols="50">text to gibberish.</textarea>
             </div>
-            <img id="squig" src="images/squiggle.png" />
+            <p>
+                <img id="squig" src="images/squiggle.png" alt="" >
+            </p>
             <div class="outbox">
-                <textarea type="text" readonly="yes" name="output" rows="20" cols="50">your gibberish.</textarea>
+                <textarea readonly="readonly" name="output" rows="20" cols="50">your gibberish.</textarea>
             </div>
         </form>
         </div>
@@ -55,7 +57,7 @@
     
         <div class="footer">
             <p>
-                &copy; 2011 ben brooks scholz - this site is <a href="http://github.com/benbscholz/gibberish-me">open source<a>
+                &copy; 2011 ben brooks scholz - this site is <a href="http://github.com/benbscholz/gibberish-me">open source</a>
             </p>
         </div>
         
