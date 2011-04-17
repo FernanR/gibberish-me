@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <title>gibberish.me -- generate gibberish from any text</title>
+    <link rel="stylesheet" type="text/css" href="styles/howstyle.css" />
+</head>    
+<body>
+    <div class="container">
+        <div class="nav">
+            <ul>
+                <li>
+                    <a href="http://github.com/benbscholz/gibberish-me">source code</a>
+                </li>
+                <li>
+                    <a href="http://gibberish.me/how.html">how it works</a>
+                </li>
+                <li>
+                    <a href="mailto:bbscholz@gmail.com">contact</a>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="intro">
+            <div class="logo">
+                <p>
+                    <a id="spritego" href="http://gibberish.me">gibberish me!</a>
+                </p>
+            </div>
+            <div class="about">
+                <h1>how does gibberish.me work?</h1>
+                <h2>the data</h2>
+                <p>
+                    gibberish.me scans the input text two words at a time. It observes every possible suffix word that follows a two word prefix. The text is then organized into a table where each row contains a two word prefix and all possible suffixes.
+                </p>
+                <p class="code">
+                    [<br />[prefix word 1, prefix word 2, possible suffix, possible suffix]<br />[prefix word 1, prefix word 2, possible suffix]<br />[prefix word 1, prefix word 2, possible suffix, possible suffix]<br />]
+                </p>
+                <p>
+                Here is the table for "Is this the real life? Is this just fantasy?":
+                </p>
+                <p class="code" id="sampledata">
+                    [<br />[Is, this, the, just]<br />[this, the, real]<br />[the, real, life?]<br />[life?, Is, this]<br />[this, just, fantasy]<br />]
+                </p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>
+                &copy; 2011 ben brooks scholz - this site is <a href="http://github.com/benbscholz/gibberish-me">open source<a>
+            </p>
+        </div>
+        
+    </div>
+    </div>
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-22784247-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+</body>
+</html>
+
