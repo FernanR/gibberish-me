@@ -60,20 +60,21 @@ GibberishMe.prototype = {
         var i, j, k, suflist, wordlist, preflist, suffix;
         
         wordlist = this.inText.split(" ");
+        preflist = [];
         
         for (i = 0; i <= wordlist.length - this.numPrefix; i = i + 1) {
-            preflist = [];
             for (j = 0 + i; j < this.numPrefix + i; j = j + 1) {
                 preflist.push(wordlist[j]);
             }  
-            suffix = wordlist[(i*this.numPrefix) + 2];
+            suffix = wordlist[i + this.numPrefix];
             this.gibberTableInsert(preflist, suffix);
+            preflist = [];
         }
     },
     
     
     gibberTableInsert: function (preflist, suffix) {
-        var i, j;
+        var i, j, ismatch;
 
         if (this.gibberTable.length === 0) {
             this.entryPush(preflist, suffix);
@@ -81,16 +82,20 @@ GibberishMe.prototype = {
         }
         for (i = 0; i < this.gibberTable.length; i = i + 1) {
             for (j = 0; j < this.numPrefix; j = j + 1) {
-                if (this.gibberTable[i][j] !== preflist[j]) {
+                if (this.gibberTable[i][j] === preflist[j]) {
+                    ismatch = true;
+                } else {
+                    ismatch = false;
                     break;
-                } 
-                window.document.writeln(this.gibberTable[i][j] + ":" + preflist[j]);
-                // executed if the row is a match
-                this.gibberTable[i].push(suffix);
+                }
             }
-        }
-        if (i === this.gibberTable.length - 1) {    
-            this.entryPush(preflist, suffix);
+            if (ismatch) {
+                this.gibberTable[i].push(suffix);
+                return;
+            } else if (i === this.gibberTable.length - 1) {   
+                this.entryPush(preflist, suffix);
+                return;
+            }
         }
     },
     
@@ -127,6 +132,8 @@ GibberishMe.prototype = {
                     randIndex = Math.round(Math.random()*(this.gibberTable[i].length - 1));
                     if (randIndex >= 2) {
                         return this.gibberTable[i][randIndex];
+                    } else if (this.gibberTable[i].length < 2) {
+                        return false;
                     }
                 }
             } else if (i === this.gibberTable.length - 2) {
@@ -150,7 +157,7 @@ GibberishMe.prototype = {
     }
 };
 
-var test = "I stand here today humbled by the task before us, grateful for the trust you have bestowed, mindful of the sacrifices borne by our ancestors. I thank President Bush for his service to our nation, as well as the generosity and cooperation he has shown throughout this transition. Forty-four Americans have now taken the presidential oath. The words have been spoken during rising tides of prosperity and the still waters of peace. Yet, every so often, the oath is taken amidst gathering clouds and raging storms. At these moments, America has carried on not simply because of the skill or vision of those in high office, but because We the People have remained faithful to the ideals of our forbearers, and true to our founding documents. So it has been. So it must be with this generation of Americans. That we are in the midst of crisis is now well understood. Our nation is at war, against a far-reaching network of violence and hatred. Our economy is badly weakened, a consequence of greed and irresponsibility on the part of some, but also our collective failure to make hard choices and prepare the nation for a new age. Homes have been lost; jobs shed; businesses shuttered. Our health care is too costly; our schools fail too many; and each day brings further evidence that the ways we use energy strengthen our adversaries and threaten our planet. These are the indicators of crisis, subject to data and statistics. Less measurable but no less profound is a sapping of confidence across our land--a nagging fear that America's decline is inevitable, and that the next generation must lower its sights. Today, I say to you that the challenges we face are real. They are serious and they are many. They will not be met easily or in a short span of time.";
+var test = "Show your flowcharts and conceal your tables, and I will be mystified. Show your tables and your flowcharts will be obvious.";
 var gm = new GibberishMe(test, 2);
 gm.makeGibberTable();
 var i;
@@ -158,6 +165,6 @@ for (i = 0; i < gm.gibberTable.length; i = i + 1) {
     window.document.writeln(gm.gibberTable[i]);
     window.document.writeln("****");
 }
-//var out = gm.generateGibberish(200);
-//window.document.writeln(out);
+var out = gm.generateGibberish(200);
+window.document.writeln(out);
 
