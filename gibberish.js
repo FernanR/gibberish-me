@@ -44,7 +44,7 @@ GibberishMe.prototype = {
             if (this.getSuffix(prefix) !== false) {
                 suffix = this.getSuffix(prefix);
                 output = output + suffix + " ";
-                prefix = this.removePref(prefix) + suffix;
+                prefix = this.removePrefix(prefix) + suffix;
             } else {
                 prefix = this.getPrefix();
                 output = output + ". " + prefix;
@@ -57,20 +57,20 @@ GibberishMe.prototype = {
     // constructs an array of arrays where each internal array consists of the
     // suffixes following a two word prefix.
     makeGibberTable: function () {
-        var i, j, suflist, wordlist, preflist, suffix;
+        var i, j, k, suflist, wordlist, preflist, suffix;
         
         wordlist = this.inText.split(" ");
-
+        
         for (i = 0; i <= wordlist.length - this.numPrefix; i = i + 1) {
-            preflist = [];
             for (j = 0; j < this.numPrefix; j = j + 1) {
-                preflist[j] = wordlist[i];
-            }
-            suffix = wordlist[i + this.numPrefix-1];
-
+                preflist = [];
+                for (k = 0; k < this.numPrefix; k = k + 1) {
+                    preflist.push(wordlist[j]);
+                }
+            }   
+            suffix = wordlist[j + this.numPrefix - 1];
             this.gibberTableInsert(preflist, suffix);
-        }   
-
+        }
     },
     
     
@@ -107,6 +107,15 @@ GibberishMe.prototype = {
     },
     
     
+    // returns the prefix without the first word
+    removePrefix: function (prefix) {
+        var spaceIndex;
+        spaceIndex = prefix.indexOf(" ");
+        prefix = prefix.substring(spaceIndex);
+        return prefix;
+    },
+    
+    
     getSuffix: function (prefix) {
         var i, prefixA, prefixB, prefixComp, randIndex;
         
@@ -139,22 +148,10 @@ GibberishMe.prototype = {
                 return this.gibberTable[randIndex][0] + " " + this.gibberTable[randIndex][1];
             }
         }   
-    },
-    
-    
-    // returns the prefix without the first word
-    removePref: function (pref) {
-        //remove the first word of the prefix
-        var i, prefix;
-        prefix = "";
-        for (i = 1; i < this.numPrefix; i = i + 1) {
-            prefix = prefix + pref.split(" ")[i] + " ";
-        }
-        return prefix;
     }
 };
 
-var test = "Show your flowcharts and conceal your tables, and I will be mystified. Show your tables and your flowcharts will be obvious.";
+var test = "Show your flowcharts";
 var gm = new GibberishMe(test, 2);
 gm.makeGibberTable();
 var i;
