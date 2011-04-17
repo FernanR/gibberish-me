@@ -4,7 +4,7 @@
  *   gibberish.js an implementation of the Markov chain algorithm in javascript.
  *   it generates gibberish text.
  * 
- *   Copyright (C) <2011>  <Ben Scholz>
+ *   Copyright (C) 2011  Ben Scholz
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -139,7 +139,7 @@ function go() {
     var gm = new GibberishMe();
     gm.inText = window.document.gibberform.input.value;
     gm.makeGibberTable();
-    var out = gm.generateGibberish(100);
+    var out = gm.generateGibberish(200);
     window.document.gibberform.output.value = out;
 }
 
