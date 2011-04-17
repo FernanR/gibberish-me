@@ -21,8 +21,9 @@
  */
 
 
-var GibberishMe = function (inputText) {
+var GibberishMe = function (inputText, nPrefix) {
     this.inText = inputText;
+    this.numPrefix = nPrefix;
     this.gibberTable = [];
 };
 
@@ -35,14 +36,15 @@ GibberishMe.prototype = {
         suffix = this.getSuffix(prefix);
         
         output = prefix + " " + suffix + " ";
-        prefix = prefix.split(" ")[1] + " " + suffix;
+        
+        prefix = this.removePref(prefix) + suffix;
         
         for (i = 0; i < numWords; i = i + 1) {
 
             if (this.getSuffix(prefix) !== false) {
                 suffix = this.getSuffix(prefix);
                 output = output + suffix + " ";
-                prefix = prefix.split(" ")[1] + " " + suffix;
+                prefix = this.removePref(prefix) + suffix;
             } else {
                 prefix = this.getPrefix();
                 output = output + ". " + prefix;
@@ -69,31 +71,39 @@ GibberishMe.prototype = {
     },
     
     
-    gibberTableInsert: function (prefixA, prefixB, suffix) {
-        var i;
+    gibberTableInsert: function (preflist, suffix) {
+        var i, j, ismatch;
+        ismatch = true;
         
         if (this.gibberTable.length === 0) {
-            this.entryPush(prefixA, prefixB, suffix);
+            this.entryPush(preflist, suffix);
             return;
         }
         for (i = 0; i < this.gibberTable.length; i = i + 1) {
-            if ((this.gibberTable[i][0] === prefixA) && 
-                (this.gibberTable[i][1] === prefixB)) {
-                this.gibberTable[i].push(suffix);  
-                return; 
-            } else if (i === this.gibberTable.length - 1) {
-                this.entryPush(prefixA, prefixB, suffix);
-                return;
+            while (ismatch) {
+                for (j = 0; j < this.numPrefix; j = j + 1) {
+                    if (this.gibberTable[j][i] === preflist[i]) {
+                        continue;
+                    } else {
+                        ismatch = false;
+                    }
+                }
+                // executed if the row is a match
+                this.gibberTable[i].push(suffix);
+            }
+            if (i === this.gibberTable.length - 1) {
+                this.entryPush(preflist, suffix);
             }
         }
     },
     
     
-    entryPush: function (prefixA, prefixB, suffix) {
-        var entry;
+    entryPush: function (preflist, suffix) {
+        var i, entry;
         entry = [];
-        entry.push(prefixA);
-        entry.push(prefixB);
+        for (i = 0; i < preflist.length; i = i + 1) {
+            entry.push(preflist[i]);
+        }
         entry.push(suffix);
         this.gibberTable.push(entry);
     },
@@ -131,6 +141,17 @@ GibberishMe.prototype = {
                 return this.gibberTable[randIndex][0] + " " + this.gibberTable[randIndex][1];
             }
         }   
+    },
+    
+    
+    // returns the prefix without the first word
+    removePref: function (pref) {
+        //remove the first word of the prefix
+        prefix = "";
+        for (i = 1; i < this.numPrefix; i = i + 1) {
+            prefix = prefix + pref.split(" ")[i] + " ";
+        }
+        return prefix
     }
 };
 
