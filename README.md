@@ -8,6 +8,7 @@
 
     To do:
         - clean input
+        - add a page allowing users to experiment with different settings
         - generalize to accept any number of prefixes
         - generalize to ignore punctuation
         - allow visualization of gibberTable data
