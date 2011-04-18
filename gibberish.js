@@ -120,38 +120,52 @@ GibberishMe.prototype = {
     },
     
     
-    getSuffix: function (prefix) {
-        var i, prefixA, prefixB, prefixComp, randIndex;
+    // takes an entry in the table (n prefixes + suffix) and returns a prefix string
+    listToPrefix: function (preflist) {
+        var i, list, prefixComp;
+        list = [];
         
-        for (i = 0; i < this.gibberTable.length - 1; i = i + 1) {
-            prefixA = this.gibberTable[i][0];
-            prefixB = this.gibberTable[i][1];
-            prefixComp = prefixA + " " + prefixB;
+        for (i = 0; i < (preflist.length - this.numPrefix); i = i + 1) {
+            list.push(preflist[i]);
+        }
+        prefixComp = list.join(" ");
+        return prefixComp;
+    },
+    
+    
+    // returns a random suffix for a given prefix
+    getSuffix: function (prefix) {
+        var i, j, preflist, prefixComp, randIndex;
+        
+        for (i = 0; i < this.gibberTable.length; i = i + 1) {
+            preflist = this.gibberTable[i];
+            prefixComp = this.listToPrefix(preflist);
             if (prefixComp === prefix) {
                 for (;;) {
                     randIndex = Math.round(Math.random()*(this.gibberTable[i].length - 1));
-                    if (randIndex >= 2) {
+                    if (randIndex >= this.numPrefix) {
                         return this.gibberTable[i][randIndex];
-                    } else if (this.gibberTable[i].length < 2) {
-                        return false;
-                    }
+                    } 
                 }
-            } else if (i === this.gibberTable.length - 2) {
+            } else if (i === this.gibberTable.length - this.numPrefix) {
                 return false;
             }
-        }   
+        } 
     },
     
     
     getPrefix: function () {
-        var randIndex, prefix;
+        var randIndex, i, preflist;
+        preflist = [];
         
         for (;;) {
             randIndex = Math.round(Math.random()*(this.gibberTable.length-1));
-
             if (this.gibberTable[randIndex][0].charAt(0).toUpperCase() === 
                 this.gibberTable[randIndex][0].charAt(0)) {
-                return this.gibberTable[randIndex][0] + " " + this.gibberTable[randIndex][1];
+                for (i = 0; i < this.numPrefix; i = i + 1) {
+                    preflist.push(this.gibberTable[randIndex][i]);
+                }
+                return preflist.join(" ");
             }
         }   
     }
@@ -160,11 +174,12 @@ GibberishMe.prototype = {
 var test = "Show your flowcharts and conceal your tables, and I will be mystified. Show your tables and your flowcharts will be obvious.";
 var gm = new GibberishMe(test, 2);
 gm.makeGibberTable();
-var i;
-for (i = 0; i < gm.gibberTable.length; i = i + 1) {
-    window.document.writeln(gm.gibberTable[i]);
-    window.document.writeln("****");
-}
-var out = gm.generateGibberish(200);
-window.document.writeln(out);
+//var i;
+//for (i = 0; i < gm.gibberTable.length; i = i + 1) {
+//    window.document.writeln(gm.gibberTable[i]);
+//    window.document.writeln("****");
+//}
+//window.document.writeln(gm.getPrefix());
+//var out = gm.generateGibberish(200);
+//window.document.writeln(out);
 
