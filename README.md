@@ -2,7 +2,7 @@
 
 ## An implementation of the Markov chain algorithm in javascript.
 
-### v 1.1 : April 16, 2011
+### v 1.1 : April 17, 2011
 
 v1.1 now allows for a variable prefix length.
 
