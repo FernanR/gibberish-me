@@ -14,7 +14,6 @@ gibberishcomp.js was compiled using closure and is typically what's powering the
         - make the main page more intuitive (change button structure)
     
     To do for gibberish.js:
-        - clean input
-        - add a page allowing users to experiment with different settings
+        - check for period at the end of generated suffix
         - generalize to ignore punctuation
         - allow visualization of gibberTable data
