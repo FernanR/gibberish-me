@@ -35,7 +35,7 @@ GibberishMe.prototype = {
      *  For best results, use at minimum 300 words.
      */
     generateGibberish: function (numGen) {
-        var i, prefix, suffix, output;
+        var i, prefix, suffix, output, lastPeriod;
         
         // get random prefix w/capital letter and append a possible suffix
         prefix = this.getPrefix();
@@ -49,13 +49,25 @@ GibberishMe.prototype = {
         
         // text generation loop
         for (i = 0; i < numGen; i = i + 1) {
-            if (this.getSuffix(prefix) !== false) {
+        
+            // if the prefix ends in a period, generate a fresh prefix
+            if (prefix.charAt(prefix.length - 1) === ".") {
+                prefix = this.getPrefix();
+                suffix = this.getSuffix(prefix);
+                output = output + prefix + " " + suffix + " ";
+                
+            // if no suffix exists for the given prefix, generate a fresh prefix
+            } else if (this.getSuffix(prefix) === false) {
+                prefix = this.getPrefix();
+                suffix = this.getSuffix(prefix);
+                output = output.substring(0, (output.length - 1));
+                output = output + ". " + prefix + " " + suffix;
+                
+            // otherwise, generate a suffix as usual
+            } else {
                 suffix = this.getSuffix(prefix);
                 output = output + suffix + " ";
                 prefix = this.removePrefix(prefix) + " " + suffix;
-            } else {
-                prefix = this.getPrefix();
-                output = output.substring(0, (output.length - 1)) + ". " + prefix + " ";
             }
         }
         
