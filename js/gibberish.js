@@ -228,7 +228,6 @@ function go() {
     var gm = new GibberishMe(input, 2);
     gm.makeGibberTable();
     var out = gm.generateGibberish(200);
-    document.getElementById("squig").style.visibility = "visible";
     window.document.gibberform.output.value = out;
 }
 
