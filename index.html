@@ -8,13 +8,22 @@
     <meta name="description" content="gibberish.me generates realistic gibberish text from input. It is a javascript implementation of the Markov chain algorithm.">
     <meta name="author" content="Ben Brooks Scholz">
 
-    <link rel="stylesheet" type="text/css" href="styles/styles.css">
+    <link rel="stylesheet" type="text/css" href="styles/script.css">
     <script type="text/javascript" src="js/gibberishcomp.js"></script>
+    <script type="text/javascript">
+        function clearText(thefield){
+            if (thefield.defaultValue==thefield.value)
+                thefield.value = "";
+        }
+    </script>
 </head>    
 <body>
     <div class="container">
         <div class="nav">
             <ul>
+                <li>
+                    <a id="try" onClick="tryObama(); return false;">try Obama's inaugural address</a>
+                </li>
                 <li>
                     <a href="http://github.com/benbscholz/gibberish-me">source code</a>
                 </li>
@@ -29,30 +38,23 @@
         
         <div class="intro">
             <div class="logo">
-                <p>
-                    <a id="spritego" href="#" onClick="go(); return false;">gibberish me!</a>
-                </p>
-            </div>
-            <div class="about">
-                <h1>Generate gibberish in the voice of any text.</h1>
-                <h2>gibberish.me scans the input text and generates gibberish based upon its vocabulary and word order. Use a long piece of text for the best results. It may just make more sense than the original...</h2>
-                <p>
-                    <a class="try" href="#" onClick="tryObama(); return false;">try Obama's inaugural address</a>
-                </p>
+                <img src="images/g-script.png" alt="gibberish">
             </div>
         </div>
         
         <div class="main">
-        <form name="gibberform" action="#">
+        <form name="gibberform" >
+        
             <div class="inbox">
-                <textarea style="width:400px" onfocus="this.value=''; return false" name="input" rows="20" cols="50">text to gibberish.</textarea>
+                <textarea style="width:400px" onfocus="clearText(this); return false" name="input" rows="20" cols="50">gibberish.me generates gibberish in the voice of the input text. Click the link above to try it with Barack Obama's inaugural address or add some text of your own.</textarea>
             </div>
             <div class="outbox">
                 <textarea style="width:400px" readonly="readonly" name="output" rows="20" cols="50">your gibberish.</textarea>
             </div>
-            <p>
-                <img id="squig" src="images/squiggle.png" alt="" >
-            </p>
+            <div class="button">
+                <a id="gosprite" href="#" onClick="go(); return false;">gibberish ME!</a>
+            </div>
+            
         </form>
         </div>
         
