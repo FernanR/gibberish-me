@@ -29,16 +29,25 @@ var GibberishMe = function (inputText, nPrefix) {
 
 GibberishMe.prototype = {
     
-    // returns gibberish generated over numGen iterations
+    /** 
+     *  Returns gibberish generated over numGen iterations.
+     *  one iteration generates nPrefix + 1 words.
+     *  For best results, use at minimum 300 words.
+     */
     generateGibberish: function (numGen) {
         var i, prefix, suffix, output;
         
+        // get random prefix w/capital letter and append a possible suffix
         prefix = this.getPrefix();
         suffix = this.getSuffix(prefix);
-     
+        
+        // write the first prefix + suffix to the output string
         output = prefix + " " + suffix + " "; 
+        
+        // remove one word from the prefix and append the suffix
         prefix = this.removePrefix(prefix) + " " + suffix;
         
+        // text generation loop
         for (i = 0; i < numGen; i = i + 1) {
             if (this.getSuffix(prefix) !== false) {
                 suffix = this.getSuffix(prefix);
@@ -49,18 +58,28 @@ GibberishMe.prototype = {
                 output = output.substring(0, (output.length - 1)) + ". " + prefix + " ";
             }
         }
+        
+        // crop the output to end with the last period
         lastPeriod = output.lastIndexOf(".");
         output = output.substring(0, lastPeriod + 1);
+        
         return output;
     },
     
     
-    // returns a random suffix for a given prefix. returns false if there is none
+    /** 
+     *  Returns a random suffix for a given prefix. 
+     *  Returns false if the prefix does not appear in the gibberTable.
+     */
     getSuffix: function (prefix) {
         var i, j, preflist, entrylist, ismatch, randIndex;
+        
+        // construct an array of the words in the prefix
         preflist = prefix.split(" ");
         
+        // find a matching prefix in the gibberTable
         for (i = 0; i < this.gibberTable.length; i = i + 1) {
+        
             entrylist = this.gibberTable[i];
             
             for (j = 0; j < this.numPrefix; j = j + 1) {
@@ -71,6 +90,7 @@ GibberishMe.prototype = {
                     break;
                 }
             }
+            
             if (ismatch === true) {
                 for (;;) {
                     randIndex = Math.round(Math.random()*(this.gibberTable[i].length - 1));
@@ -79,6 +99,7 @@ GibberishMe.prototype = {
                     } 
                 }
             }
+            
             if (i === this.gibberTable.length - this.numPrefix) {
                 return false;
             }
@@ -86,26 +107,33 @@ GibberishMe.prototype = {
     },
     
     
-    // returns a random prefix beginning with a capital letter 
+    /** 
+     *  Returns a random prefix beginning with a capital letter.
+     */ 
     getPrefix: function () {
         var randIndex, i, preflist;
         preflist = [];
         
         for (;;) {
+        
             randIndex = Math.round(Math.random()*(this.gibberTable.length-1));
+            
             if (this.gibberTable[randIndex][0].charAt(0).toUpperCase() === 
                 this.gibberTable[randIndex][0].charAt(0)) {
+                
                 for (i = 0; i < this.numPrefix; i = i + 1) {
                     preflist.push(this.gibberTable[randIndex][i]);
                 }
+                
                 return preflist.join(" ");
             }
         }   
     },
 
-
-    // constructs an array of arrays where each internal array consists of the
-    // suffixes following a two word prefix.
+    /**
+     * Constructs an array of arrays where each internal array consists of the
+     * suffixes following a two word prefix.
+     */
     makeGibberTable: function () {
         var i, j, k, suflist, wordlist, preflist, suffix;
         
@@ -123,7 +151,9 @@ GibberishMe.prototype = {
     },
     
     
-    // inserts a suffix following a list of prefixes into the gibberTable
+    /** 
+     *  Inserts a suffix following a list of prefixes into the gibberTable
+     */
     gibberTableInsert: function (preflist, suffix) {
         var i, j, ismatch;
 
@@ -151,19 +181,25 @@ GibberishMe.prototype = {
     },
     
     
-    // pushes a new entry (prefix and possible suffixes) to the gibberTable
+    /**
+     *  Pushes a new entry (prefix and possible suffixes) to the gibberTable.
+     */
     entryPush: function (preflist, suffix) {
         var i, entry;
+        
         entry = [];
+        
         for (i = 0; i < preflist.length; i = i + 1) {
             entry.push(preflist[i]);
         }
+        
         entry.push(suffix);
         this.gibberTable.push(entry);
     },
     
-    
-    // returns the prefix without the first word
+    /**
+     * Returns the prefix without the first word.
+     */
     removePrefix: function (prefix) {
         var spaceIndex;
         spaceIndex = prefix.indexOf(" ");
