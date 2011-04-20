@@ -176,3 +176,8 @@ a:hover {
     border-bottom: 1px solid #C56342;
     color: #000000;
 }
+
+.footer iframe {
+	margin-right: auto;
+	margin-left: auto;
+}
