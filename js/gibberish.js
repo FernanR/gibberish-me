@@ -222,6 +222,15 @@ GibberishMe.prototype = {
 
 
 // functions called from the browser
+function go(nGen, nPref) {
+    var input = window.document.gibberform.input.value;
+    var gm = new GibberishMe(input, nPref);
+    gm.makeGibberTable();
+    var output = gm.generateGibberish(nGen);
+    window.document.gibberform.output.value = output;
+}
+
+
 function go() {
     // set default number of prefixes to 2
     var input = window.document.gibberform.input.value;
