@@ -17,3 +17,4 @@ gibberishcomp.js was compiled using closure and is typically what's powering the
     To do for gibberish.js:
         - generalize to ignore punctuation
         - allow visualization of gibberTable data
+		- function to generate shareable added (integration with twitter and facebook in the future)
