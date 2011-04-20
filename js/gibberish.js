@@ -94,6 +94,7 @@ GibberishMe.prototype = {
         
             entrylist = this.gibberTable[i];
             
+			// iterate through the prefixes, exiting upon first non-match
             for (j = 0; j < this.numPrefix; j = j + 1) {
                 if (preflist[j] === entrylist[j]) {
                     ismatch = true;
@@ -103,6 +104,7 @@ GibberishMe.prototype = {
                 }
             }
             
+			// if a match has been found generate a random index and return the suffix at that index
             if (ismatch === true) {
                 for (;;) {
                     randIndex = Math.round(Math.random()*(this.gibberTable[i].length - 1));
@@ -112,6 +114,7 @@ GibberishMe.prototype = {
                 }
             }
             
+			// if no suffix exists for the input prefix, return false
             if (i === this.gibberTable.length - this.numPrefix) {
                 return false;
             }
@@ -128,11 +131,13 @@ GibberishMe.prototype = {
         
         for (;;) {
         
+			// find a random prefix in the gibberTable
             randIndex = Math.round(Math.random()*(this.gibberTable.length-1));
             
             if (this.gibberTable[randIndex][0].charAt(0).toUpperCase() === 
                 this.gibberTable[randIndex][0].charAt(0)) {
                 
+				// if the prefix begins with a capital letter enter prefix words into an array
                 for (i = 0; i < this.numPrefix; i = i + 1) {
                     preflist.push(this.gibberTable[randIndex][i]);
                 }
@@ -169,11 +174,14 @@ GibberishMe.prototype = {
     gibberTableInsert: function (preflist, suffix) {
         var i, j, ismatch;
 
+		// first insert
         if (this.gibberTable.length === 0) {
             this.entryPush(preflist, suffix);
             return;
         }
         for (i = 0; i < this.gibberTable.length; i = i + 1) {
+			
+			// check if the prefix already exists in the gibberTable
             for (j = 0; j < this.numPrefix; j = j + 1) {
                 if (this.gibberTable[i][j] === preflist[j]) {
                     ismatch = true;
