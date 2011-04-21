@@ -2,7 +2,7 @@
 
 ## An implementation of the Markov chain algorithm in javascript.
 
-### v 1.2.1 : April 19, 2011
+### v 1.2.1 : April 20, 2011
 
 ####v1.2.1 -- added facebook like button (first social feature)
 ####v1.2   -- major ui update
