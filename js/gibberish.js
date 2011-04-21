@@ -174,8 +174,8 @@ GibberishMe.prototype = {
     },
 
     /**
-     * Constructs an array of arrays where each internal array consists of the
-     * suffixes following a two word prefix.
+     *  Constructs an array of arrays where each internal array consists of the
+     *  suffixes following a two word prefix.
      */
     makeGibberTable: function () {
         var i, j, k, suflist, wordlist, preflist, suffix;
@@ -244,7 +244,7 @@ GibberishMe.prototype = {
     },
     
     /**
-     * Returns the prefix without the first word.
+     *  Returns the prefix without the first word.
      */
     removePrefix: function (prefix) {
         var spaceIndex;
