@@ -5,7 +5,7 @@
 ### v 1.3 : April 21, 2011
 
 ####v1.3   -- added animation with scriptaculous framework (http://script.aculo.us)
-####       -- used html5 boilerplate as html base	
+####     \t-- used html5 boilerplate as html base	
 ####v1.2.1 -- added facebook like button (first social feature)
 ####v1.2   -- major ui update
 ####v1.1   -- now allows for a variable prefix length.
