@@ -260,8 +260,18 @@ GibberishMe.prototype = {
 function gibberishMe(nGen, nPref) {
     var input = window.document.gibberform.input.value;
     var gm = new GibberishMe(input, nPref);
+    
+    // update input stats
+    window.document.getElementById('iwords').innerHTML = input.split(" ").length.toString().concat(" words");
+    window.document.getElementById('ichars').innerHTML = input.length.toString().concat(" characters"); 
+    
     gm.makeGibberTable();
     var output = gm.generateGibberish(nGen);
+    
+    // update output stats
+    window.document.getElementById('owords').innerHTML = output.split(" ").length.toString().concat(" words");
+    window.document.getElementById('ochars').innerHTML = output.length.toString().concat(" characters");
+    
     window.document.gibberform.output.value = output;
 }
 
@@ -281,8 +291,5 @@ function clearText(thefield){
     if (thefield.defaultValue==thefield.value)
         thefield.value = "";
 }
-function animateOutput() {
-    Effect.BlindDown('outcontainer');
-    gibberishMe(80, 2);
-}
+
 
