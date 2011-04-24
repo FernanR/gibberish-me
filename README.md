@@ -2,10 +2,10 @@
 
 ## An implementation of the Markov chain algorithm in javascript.
 
-### v 1.3 : April 21, 2011
+### v 1.4 : April 24, 2011
 
+####-- added input text statistics box & converted the 'try' button to html
 ####-- added animation with scriptaculous framework (http://script.aculo.us) & used html5 boilerplate as base
-
 ####-- added facebook like button (first social feature)
 ####-- major ui update
 ####-- now allows for a variable prefix length.
