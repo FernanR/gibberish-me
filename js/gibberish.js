@@ -254,16 +254,34 @@ GibberishMe.prototype = {
     }
 };
 
-
+// returns the input number with commas added
+function addCommas(number) {
+    var output, out1, out2, regex;
+    number = number + '';
+    output = number.split('.');
+    out1 = output[0];
+    out2 = output.length > 1 ? '.' + output[1] : '';
+    regex = /(\d+)(\d{3})/;
+    
+    while (regex.test(out1)) {
+        out1 = out1.replace(regex, '$1' + ',' + '$2');
+    }
+    
+    return out1 + out2;
+}
 
 // functions called from the browser
 function gibberishMe(nGen, nPref) {
     var input = window.document.gibberform.input.value;
     var gm = new GibberishMe(input, nPref);
     
+    var nwords, nchars;
+    
     // update input stats
-    window.document.getElementById('iwords').innerHTML = input.split(" ").length.toString().concat(" words");
-    window.document.getElementById('ichars').innerHTML = input.length.toString().concat(" characters"); 
+    nwords = input.split(" ").length;
+    nchars = input.length;
+    window.document.getElementById('iwords').innerHTML = addCommas(nwords).concat(" words");
+    window.document.getElementById('ichars').innerHTML = addCommas(nchars).concat(" characters"); 
     
     gm.makeGibberTable();
     var output = gm.generateGibberish(nGen);
