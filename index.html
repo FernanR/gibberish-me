@@ -37,12 +37,12 @@
     <script type="text/javascript">
         function animateOutput() {
             Effect.BlindDown('outcontainer');
+            Effect.BlindDown('instats');
             gibberishMe(80, 2);
-            Effect.Appear('instats');
         }
     </script>
 </head>
-<body>
+<body onLoad="Effect.BlindDown('mainform', { scaleTo: 70 });">
     <header class="wrapper">
         <nav>
             <ul>
@@ -58,7 +58,7 @@
             <h3 id="instats" style="display: none"><a id="iwords"></a><a id="ichars"></a></h3>
             <h3 id="outstats" style="display: none"><a id="owords"></a><a id="ochars"></a></h3>
         </header>
-        <form name="gibberform">
+        <form name="gibberform" id="mainform" style="display: none">
             <div id="incontainer">
                 <textarea style="width:400px" onfocus="clearText(this); return false" name="input" rows="10" cols="50">gibberish.me generates gibberish in the voice of the input text. Length of input affects the quality of the output; essays and chapters of books will generate realistic output, while a few sentences will probably yield the original text printed many times over. Click the link above to try it with Barack Obama's inaugural address or add some text of your own.</textarea>
             </div>
