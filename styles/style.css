@@ -109,21 +109,21 @@ nav {
 	text-align: center;
 }
 
-nav ul li {
+nav li {
 	display: inline;
 	margin-right: 10px;
 	margin-left: 10px;
 	list-style-type: none;
 }
 
-nav ul li a {
+nav li a {
 	color: #736689;
 	font-weight: bold;
 	text-decoration: none;
 	border-bottom: 1px solid #736689;
 }
 
-nav ul li a:hover {
+nav li a:hover {
 	border-bottom: 1px dashed #ffffff;
 }
 
