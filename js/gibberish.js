@@ -57,8 +57,8 @@ GibberishMe.prototype = {
     
     /** 
      *  Returns gibberish generated over numGen iterations.
-     *  one iteration generates nPrefix + 1 words.
-     *  For best results, use at minimum 300 words.
+     *  One interation is ~1 word. Input of 80 yields 75 words on average.
+     *  For best results, use at minimum 300 words as the input.
      */
     generateGibberish: function (numGen) {
         var i, prefix, suffix, output, lastPeriod;
