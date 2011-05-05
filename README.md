@@ -1,20 +1,13 @@
 # gibberish.me
 
+http://gibberish.me
+
 ## An implementation of the Markov chain algorithm in javascript.
+## A gibberish text generator.
 
-### v 1.4 : April 24, 2011
+It uses jaylist (http://github.com/benbscholz/jaylist) as a hashtable.
 
-####-- added input text statistics box & converted the 'try' button to html
-####-- added animation with scriptaculous framework (http://script.aculo.us) & used html5 boilerplate as base
-####-- added facebook like button (first social feature)
-####-- major ui update
-####-- now allows for a variable prefix length.
+Animations use scriptaculous.
 
-gibberish.js is the commented source code.
-gibberishcomp.js was compiled using closure and is typically what's powering the site.
-
-    To do for interface:
-        - make experiment page
-    
-    To do for gibberish.js:
-        - allow visualization of gibberTable data (implemented with experiment page)
+js/gibberish.js is the commented source code.
+js/gibberish.min.js is the closure compiled code being use at the site.
