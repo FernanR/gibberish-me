@@ -28,10 +28,8 @@
  * The default is 2. 
  */
 var GibberishMe = function (inputText, nPrefix) {
-    if (typeof nPrefix === undefined)
-        nPrefix = 2;
     this.inText = inputText;
-    this.numPrefix = nPrefix;
+    this.numPrefix = nPrefix || 2;
     this.gibberTable = new List();
 };
 
