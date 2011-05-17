@@ -42,7 +42,7 @@ GibberishMe.prototype = {
      *  For best results, use at minimum 300 words as the input.
      */
     generateGibberish: function (numGen) {
-        var i, prefix, suffix, gibberish;
+        var i, prefix, suffix, gibberish, lastPeriod;
         
         prefix = this.getPrefix();
         suffix = this.getSuffix(prefix);
@@ -73,6 +73,11 @@ GibberishMe.prototype = {
                 prefix = this.removePrefix(prefix).concat(" ".concat(suffix));
             }
         }
+        
+        // crop the output to end with the last period
+        lastPeriod = gibberish.lastIndexOf(".");
+        gibberish = gibberish.substring(0, lastPeriod + 1);
+        
         return gibberish;
     },
     
