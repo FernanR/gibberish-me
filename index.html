@@ -38,7 +38,7 @@
         function animateOutput() {
             Effect.BlindDown('outcontainer');
             Effect.Appear('instats');
-            gibberishMe(80, 2);
+            gibberishMe(500, 2);
         }
     </script>
 </head>
@@ -46,13 +46,13 @@
     <div id="main" class="wrapper">
         <header>
             <h1><a>gibberish ME!</a></h1>
-            <h2 onClick="tryObama(); return false;"><a>try Obama's inaugural address</a></h2>
+            <h2 onClick="tryNietzsche(); return false;"><a>try Nietzsche on Good &amp; Evil</a></h2>
             <h3 id="instats" style="display: none"><a id="iwords"></a><a id="ichars"></a></h3>
             <h3 id="outstats" style="display: none"><a id="owords"></a><a id="ochars"></a></h3>
         </header>
         <form name="gibberform" id="mainform" style="display: none">
             <div id="incontainer">
-                <textarea style="width:400px" onfocus="clearText(this); return false" name="input" rows="10" cols="50">gibberish.me generates gibberish in the voice of the input text. Length of input affects the quality of the output; essays and chapters of books will generate realistic output, while a few sentences will probably yield the original text printed many times over. Click the link above to try it with Barack Obama's inaugural address or add some text of your own.</textarea>
+                <textarea style="width:400px" onfocus="clearText(this); return false" name="input" rows="10" cols="50">gibberish.me generates gibberish in the voice of the input text. Length of input affects the quality of the output; essays and chapters of books will generate realistic output, while a few sentences will probably yield the original text printed many times over. Click the link above to try it with Nietzsche's essay "Good &amp; Bad, Good &amp; Evil".</textarea>
             </div>
             <div id="outcontainer">
                 <textarea style="width:400px" readonly="readonly" name="output" rows="10" cols="50">your gibberish.</textarea>
