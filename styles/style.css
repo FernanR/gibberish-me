@@ -110,7 +110,7 @@ h1 a {
 }
 
 header {
-	background: url("../images/gm-script.png") no-repeat scroll 0 0 transparent;
+	background: url("../images/gm-trans.png") no-repeat scroll 0 0 transparent;
 	clear: both;
 }
 
@@ -141,7 +141,7 @@ header h2 a:hover {
 }
 
 header h3 {
-	width: 200px;
+	width: 193px;
 	height: 75px;
 	float: left;
 	margin-top: -85px;
